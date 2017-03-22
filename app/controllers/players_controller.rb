@@ -5,6 +5,7 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.all
+    @cup = Cup.find_by(active: true)
   end
 
   # GET /players/1
