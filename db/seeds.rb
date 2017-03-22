@@ -14,7 +14,7 @@ Player.create!([
 cup = Cup.first
 
 Player.all.each do |player|
-  CupPlayer.create!(cup: cup, player: player, score: 0)
+  CupPlayer.create!(cup: cup, player: player)
 end if CupPlayer.count == 0
 
 Player.all.each do |player_1|
