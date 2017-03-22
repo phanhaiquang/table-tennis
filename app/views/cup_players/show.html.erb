@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cup:</strong>
+  <%= @cup_player.cup_id %>
+</p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @cup_player.player_id %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @cup_player.score %>
+</p>
+
+<%= link_to 'Edit', edit_cup_player_path(@cup_player) %> |
+<%= link_to 'Back', cup_players_path %>

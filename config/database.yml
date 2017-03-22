@@ -1,0 +1,19 @@
+development: &default
+  adapter: postgresql
+  encoding: unicode
+  database: tennis_development
+  pool: 5
+  username: <%= ENV["PG_USERNAME"] %>
+  password: <%= ENV["PG_PASSWORD"] %>
+  host: <%= ENV["PG_HOST"] %>
+
+test:
+  <<: *default
+  database: tennis_test
+
+production:
+ adapter: postgresql
+ database: <%= ENV["DATABASE_DB"] %>
+ username: <%= ENV["DATABASE_USERNAME"] %>
+ password: <%= ENV["DATABASE_PASSWORD"] %>
+

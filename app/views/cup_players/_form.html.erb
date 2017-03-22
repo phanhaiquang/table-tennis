@@ -1,0 +1,32 @@
+<%= form_for(cup_player) do |f| %>
+  <% if cup_player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cup_player.errors.count, "error") %> prohibited this cup_player from being saved:</h2>
+
+      <ul>
+      <% cup_player.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cup_id %>
+    <%= f.number_field :cup_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :player_id %>
+    <%= f.number_field :player_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :score %>
+    <%= f.number_field :score %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
