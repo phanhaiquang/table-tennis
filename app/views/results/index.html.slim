@@ -1,21 +1,22 @@
 h1 Result of "#{@cup.name}" season
 hr
 
-div.result-table
+div
   table.table.table-condensed
     thead
       tr
-        th Match
-        th Result
-        th 
+        - @table[0].each do |item|
+          th= item
     tbody
-      - @matches.each do |match|
-        td =match.name
-        td =match.score
-        td =link_to "Edit", edit_match_path(match)
+      - @table[1..-1].each do |items|
+        - items.each do |item|
+          - if item.nil?
+            td.not-exist ""
+          - else
+            td= item
         tr
 
-div.result-table
+div
   table.table.table-condensed
     thead
       tr
