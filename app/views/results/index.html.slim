@@ -3,17 +3,15 @@ hr
 
 div
   table.table.table-condensed
-    thead
-      tr
-        - @table[0].each do |item|
-          th= item
     tbody
-      - @table[1..-1].each do |items|
-        - items.each do |item|
-          - if item.nil?
-            td.not-exist ""
+      - @table.each do |row|
+        - row.each do |item|
+          - if item.class == 1.class
+            td= Player.find(item).name
+          - elsif item.nil?
+            td -
           - else
-            td= item
+            td= link_to item[:score], edit_match_path(Match.find(item[:id]))
         tr
 
 div
@@ -26,7 +24,7 @@ div
         th Score
     tbody
       - @players.each do |player|
-        td =player.name
+        td =link_to player.name, player_path(player)
         td =player.match_win(@cup)
         td =player.match_loose(@cup)
         td =player.cup_score(@cup)

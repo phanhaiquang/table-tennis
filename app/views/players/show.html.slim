@@ -1,0 +1,16 @@
+p#notice = notice
+
+p 
+  <strong>Name: </strong>
+  = @player.name
+
+table.table
+  tbody
+    - @matches.each do |match|
+      td= match.name
+      td= match.score
+      tr
+
+
+= link_to 'Edit | ', edit_player_path(@player)
+= link_to 'Back', players_path

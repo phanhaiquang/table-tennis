@@ -11,6 +11,8 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    @cup = Cup.find_by(active: true)
+    @matches = (Match.where(cup: @cup, player_1: @player) + Match.where(cup: @cup, player_2: @player)).flatten
   end
 
   # GET /players/new
