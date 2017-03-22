@@ -15,8 +15,8 @@
   <tbody>
     <% @cup_players.each do |cup_player| %>
       <tr>
-        <td><%= cup_player.cup_id %></td>
-        <td><%= cup_player.player_id %></td>
+        <td><%= cup_player.cup.name %></td>
+        <td><%= cup_player.player.name %></td>
         <td><%= cup_player.score %></td>
         <td><%= link_to 'Show', cup_player %></td>
         <td><%= link_to 'Edit', edit_cup_player_path(cup_player) %></td>

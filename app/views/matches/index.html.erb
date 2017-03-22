@@ -17,9 +17,9 @@
   <tbody>
     <% @matches.each do |match| %>
       <tr>
-        <td><%= match.cup_id %></td>
-        <td><%= match.player_1_id %></td>
-        <td><%= match.player_2_id %></td>
+        <td><%= match.cup.name %></td>
+        <td><%= match.player_1.name %></td>
+        <td><%= match.player_2.name %></td>
         <td><%= match.score_1 %></td>
         <td><%= match.score_2 %></td>
         <td><%= link_to 'Show', match %></td>

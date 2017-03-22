@@ -1,0 +1,31 @@
+h1 Result
+hr
+
+div.result-table
+  table.table.table-condensed
+    thead
+      tr
+        th Match
+        th Result
+    tbody
+      - @matches.each do |match|
+        td =match.name
+        td =match.score
+        tr
+
+div.result-table
+  table.table.table-condensed
+    thead
+      tr
+        th Player
+        th Win
+        th Loose
+        th Score
+    tbody
+      - @players.each do |player|
+        td =player.name
+        td =player.match_win(@cup)
+        td =player.match_loose(@cup)
+        td =player.cup_score(@cup)
+        tr
+
