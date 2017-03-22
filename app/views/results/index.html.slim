@@ -7,10 +7,12 @@ div.result-table
       tr
         th Match
         th Result
+        th 
     tbody
       - @matches.each do |match|
         td =match.name
         td =match.score
+        td =link_to "Edit", edit_match_path(match)
         tr
 
 div.result-table
