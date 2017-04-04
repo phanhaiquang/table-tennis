@@ -17,4 +17,10 @@ class Player < ApplicationRecord
   def match_win(cup)
     (c = cup_player(cup)).present? ? c.win : 0
   end
+
+  def hs(cup)
+    hs = (Match.where(cup: cup, player_1: self).pluck(:score_1).sum + Match.where(cup: cup, player_2: self).pluck(:score_2).sum) -
+    (Match.where(cup: cup, player_1: self).pluck(:score_2).sum + Match.where(cup: cup, player_2: self).pluck(:score_1).sum)
+    hs > 0 ? "+#{hs}" : hs.to_s
+  end
 end

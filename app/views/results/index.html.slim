@@ -9,9 +9,15 @@ div
           - if item.class == 1.class
             td= Player.find(item).name
           - elsif item.nil?
-            td -
+            td.btn-disabled -
           - else
-            td= link_to item[:score], edit_match_path(Match.find(item[:id]))
+            - m = Match.find(item[:id])
+            - if m.score_1 > m.score_2
+              td.btn-danger= link_to item[:score], edit_match_path(Match.find(item[:id]))
+            - elsif m.score_2 > m.score_1
+              td.btn-warning= link_to item[:score], edit_match_path(Match.find(item[:id]))
+            - else
+              td= link_to item[:score], edit_match_path(Match.find(item[:id]))
         tr
 
 div
@@ -21,12 +27,14 @@ div
         th Player
         th Win
         th Loose
+        th HS
         th Score
     tbody
       - @players.each do |player|
         td =link_to player.name, player_path(player)
         td =player.match_win(@cup)
         td =player.match_loose(@cup)
+        td =player.hs(@cup)
         td =player.cup_score(@cup)
         tr
 

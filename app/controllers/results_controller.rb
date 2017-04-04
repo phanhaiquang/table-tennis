@@ -5,7 +5,7 @@ class ResultsController < ApplicationController
 
     @players = Player.find(@matches.pluck(:player_1_id, :player_2_id).flatten.uniq)
 
-    ids = @players.pluck(:id)
+    ids = @players.pluck(:id).sort
 
     @table = []
     count = ids.count + 1
