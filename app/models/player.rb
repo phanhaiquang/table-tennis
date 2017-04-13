@@ -23,4 +23,8 @@ class Player < ApplicationRecord
     (Match.where(cup: cup, player_1: self).pluck(:score_2).sum + Match.where(cup: cup, player_2: self).pluck(:score_1).sum)
     hs > 0 ? "+#{hs}" : hs.to_s
   end
+
+  def score_with_hs(cup)
+    cup_score(cup) * 1000 + hs(cup)
+  end
 end

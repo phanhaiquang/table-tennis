@@ -1,4 +1,6 @@
 class CupPlayer < ApplicationRecord
+  INIT_SCORE = 10
+
   belongs_to :cup
   belongs_to :player
 
@@ -20,10 +22,14 @@ class CupPlayer < ApplicationRecord
   end
 
   def score_for_looser
-    0
+    -1
+  end
+
+  def init_score
+    INIT_SCORE
   end
 
   def score
-    win * score_for_winner + loose * score_for_looser
+    init_score + win * score_for_winner + loose * score_for_looser
   end
 end

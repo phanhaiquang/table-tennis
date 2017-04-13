@@ -4,6 +4,7 @@ class ResultsController < ApplicationController
     @matches = @cup.matches.order(updated_at: :desc)
 
     @players = Player.find(@matches.pluck(:player_1_id, :player_2_id).flatten.uniq)
+    @players = @players.sort { |a,b| b.score_with_hs(@cup) <=> a.score_with_hs(@cup) }
 
     ids = @players.pluck(:id).sort
 
