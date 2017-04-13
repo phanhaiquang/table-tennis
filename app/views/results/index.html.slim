@@ -25,6 +25,7 @@ div
     thead
       tr
         th Player
+        th Match
         th Win
         th Loose
         th HS
@@ -32,6 +33,7 @@ div
     tbody
       - @players.each do |player|
         td =link_to player.name, player_path(player)
+        td =player.match_win(@cup) + player.match_loose(@cup)
         td =player.match_win(@cup)
         td =player.match_loose(@cup)
         td =player.signed_hs(@cup)
