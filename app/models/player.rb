@@ -19,9 +19,12 @@ class Player < ApplicationRecord
   end
 
   def hs(cup)
-    hs = (Match.where(cup: cup, player_1: self).pluck(:score_1).sum + Match.where(cup: cup, player_2: self).pluck(:score_2).sum) -
+    (Match.where(cup: cup, player_1: self).pluck(:score_1).sum + Match.where(cup: cup, player_2: self).pluck(:score_2).sum) -
     (Match.where(cup: cup, player_1: self).pluck(:score_2).sum + Match.where(cup: cup, player_2: self).pluck(:score_1).sum)
-    hs > 0 ? "+#{hs}" : hs.to_s
+  end
+
+  def signed_hs(cup)
+    hs(cup) > 0 ? "+#{hs}" : hs.to_s
   end
 
   def score_with_hs(cup)
