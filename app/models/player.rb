@@ -24,7 +24,8 @@ class Player < ApplicationRecord
   end
 
   def signed_hs(cup)
-    hs(cup) > 0 ? "+#{hs}" : hs.to_s
+    hs_t = hs(cup)
+    hs_t > 0 ? "+#{hs_t}" : hs_t.to_s
   end
 
   def score_with_hs(cup)
