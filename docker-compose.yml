@@ -1,0 +1,33 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=
+      - LC_ALL=C.UTF-8
+  box:
+    image: busybox
+    volumes:
+      - /box
+  app:
+    image: quangphan/webapp
+    command: ./bin/start.sh
+    volumes:
+      - .:/app:cached
+    volumes_from:
+      - box:cached
+    ports:
+      - "3000:3000"
+    environment:
+      PUMA_WORKERS: 2
+      MIN_THREADS: 1
+      MAX_THREADS: 16
+      DOCKER: "true"
+      PG_HOST: "db"
+      PG_USERNAME: "postgres"
+      PG_PASSWORD: ""
+    depends_on:
+      - box
+    links:
+      - db

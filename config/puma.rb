@@ -4,7 +4,10 @@ threads Integer(ENV['MIN_THREADS'] || 1), Integer(ENV['MAX_THREADS'] || 16)
 preload_app!
 
 rackup      DefaultRackup
+bind        ENV['PUMA_SOCKET'] || "unix:///var/www/smms/shared/tmp/sockets/puma.sock"
 environment ENV['RACK_ENV'] || 'development'
+
+worker_timeout = ENV['PUMA_WORKER_TIMEOUT'].to_i + 60
 
 on_worker_boot do
   # worker specific setup
