@@ -12,7 +12,7 @@ class Match < ApplicationRecord
   end
 
   def score
-    "#{score_1.to_s} - #{score_2.to_s}"
+    "#{score_1.to_s}#{star_1>0? "(*)" : ""} - #{score_2.to_s}#{star_2>0?"(*)" : ""}"
   end
 
   def update_player_score

@@ -17,6 +17,14 @@ class CupPlayer < ApplicationRecord
     self.update_attributes(win: w, loose: l)
   end
 
+  def p1_matches
+    Match.where(cup_id: self.cup_id, player_1: self.player_id)
+  end
+
+  def p2_matches
+    Match.where(cup_id: self.cup_id, player_2: self.player_id)
+  end
+
   def score_for_winner
     1
   end
@@ -30,6 +38,15 @@ class CupPlayer < ApplicationRecord
   end
 
   def score
-    init_score + win * score_for_winner + loose * score_for_looser
+    score = init_score
+    p1_matches.each do |match|
+      score += (score_for_winner + match.star_1) if match.score_1 > match.score_2
+      score += (score_for_looser - match.star_1) if match.score_1 < match.score_2
+    end
+    p2_matches.each do |match|
+      score += (score_for_winner + match.star_2) if match.score_2 > match.score_1
+      score += (score_for_looser - match.star_2) if match.score_2 < match.score_1
+    end
+    score
   end
 end
